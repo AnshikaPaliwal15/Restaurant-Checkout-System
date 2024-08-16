@@ -1,0 +1,61 @@
+#get the complaint from the customer
+def get_complaint():
+    complaint = input("Facing Any problem.......Feel free to ask, we're available \n Please enter here: ")
+    return complaint
+
+#response from the restaurant owner
+def owner_response(complaint):
+    responses = {
+        "food was not good": "I'm sorry to hear that. We'll make sure to adjust the seasoning for future orders.",
+        "food was not cooked properly": "We apologize for the inconvenience. We'll make sure to properly cook your food next time.",
+        "there was billing mistake ": "We're sorry for the inconvenience. We'll make sure to correct it as soon as possible.",
+        "food hasen't reached yet" : "Have patience your tasty food is cooking , will not upset you :) ",
+        "wrong food items prices are calculated" :"Checking from our side, please wait" ,
+        "app is not working" : "We are fixing it" ,
+        "other": "I'm sorry to hear that. Can you please provide more details so we can address the issue properly?"
+    }
+
+    # Find response 
+    response = responses.get(complaint, responses['other'])
+    return response
+
+#getting the customer's response to the owner's response
+def customer_response(response):
+    # Create a dictionary of possible responses and further complaints
+    complaints = {
+        "thank you": "You're welcome. We hope to see you again soon!",
+        "can you do something about it": "Yes, of course. We'll make sure to fix the issue for future orders.",
+        "tq": "You're welcome. We hope to see you again soon!",
+        "great": "You're welcome.See you again soon!",
+        "ok": "Thank you for understanding. We hope you enjoyed the rest of your meal.",
+        "thanks " :"will see you soon",
+        "other": "I'm sorry to hear that. Can you please provide more details so we can address the issue properly?"
+    }
+
+    # Get the customer's response
+    response = input(response + "\nResponse: ")
+
+    # Find the complaint for the given response
+    complaint = complaints.get(response, complaints['other'])
+
+    # Return the complaint
+    return complaint
+
+# Function to handle the customer complaint
+def handle_complaint():
+    # Get the complaint from the customer
+    complaint = get_complaint()
+
+    # response from the restaurant owner
+    response = owner_response(complaint)
+
+    # Print owner's response
+    print("Owner: " + response)
+
+    # Get the customer's response to the owner's response
+    complaint = customer_response(response)
+
+    # Print the customer's response
+    print("Customer: " + complaint)
+
+handle_complaint()
